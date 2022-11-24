@@ -7,7 +7,6 @@ import Layoutpage from '../pages/Layoutpage'
 import { Navigate } from 'react-router-dom'
 function RequireAuth({ children }) {
   const authed = localStorage.getItem('token')
-
   return authed === null ? (
     <Navigate to="/login" replace /> // 跳转到登录
   ) : (
