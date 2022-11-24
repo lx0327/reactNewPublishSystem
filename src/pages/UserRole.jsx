@@ -1,6 +1,7 @@
 import { Table, Modal, Tree } from 'antd'
 import { EditTwoTone } from '@ant-design/icons'
 import { useState, useEffect } from 'react'
+import { getRoleList } from '../server/request'
 import axios from 'axios'
 function UserRole() {
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -12,7 +13,7 @@ function UserRole() {
     axios.get('http://localhost:9000/rights?_embed=children').then((res) => {
       setTreeData(res.data)
     })
-    axios.get('http://localhost:9000/roles').then((res) => {
+    getRoleList().then((res) => {
       res.data.map((item) => {
         if (item.id === record.id) {
           setCheckedKeys(item.rights)
@@ -79,14 +80,13 @@ function UserRole() {
     },
   ]
   const [data, setData] = useState([])
+  function getTableRoleList() {
+    getRoleList().then((res) => {
+      setData(res.data)
+    })
+  }
   useEffect(() => {
-    async function getRoleList() {
-      await axios.get('http://localhost:9000/roles').then((res) => {
-        setData(res.data)
-      })
-    }
-
-    getRoleList()
+    getTableRoleList()
   }, [])
   return (
     <div className="UserRole">
