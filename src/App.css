@@ -41,3 +41,10 @@
   height: 100%;
   background-color: white;
 }
+/* //富文本 */
+.wrapperClassName {
+  height: 300px;
+}
+.steps-action {
+  margin-top: 100px;
+}

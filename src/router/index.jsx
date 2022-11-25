@@ -4,7 +4,9 @@ import Permission from '../pages/Permission'
 import UserList from '../pages/UserList'
 import Login from '../pages/Login'
 import Layoutpage from '../pages/Layoutpage'
+import PageNotFind from '../pages/PageNotFind'
 import { Navigate } from 'react-router-dom'
+import AddNews from '../pages/AddNews'
 function RequireAuth({ children }) {
   const authed = localStorage.getItem('token')
   return authed === null ? (
@@ -40,12 +42,20 @@ const routesList = [
         path: '/user-manage/list',
         element: <UserList />,
       },
+      {
+        path: '/news-manage/add',
+        element: <AddNews />,
+      },
     ],
   },
 
   {
     path: '/login',
     element: <Login />,
+  },
+  {
+    path: '/pageNo',
+    element: <PageNotFind />,
   },
 ]
 export default routesList

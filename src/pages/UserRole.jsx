@@ -18,6 +18,7 @@ function UserRole() {
         if (item.id === record.id) {
           setCheckedKeys(item.rights)
         }
+        return null
       })
     })
     setIsModalOpen(true)

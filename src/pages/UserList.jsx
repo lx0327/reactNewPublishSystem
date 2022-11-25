@@ -104,7 +104,6 @@ function UserList() {
     if (item.region === '') {
       setisdisabled(true)
     }
-    console.log(item)
     setisAddUser(false)
     setIsModalOpen(true)
     form.setFieldsValue(item)
