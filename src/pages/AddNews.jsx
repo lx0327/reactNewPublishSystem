@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
-import { Button, message, Steps, Form, Input } from 'antd'
+import React, { useState, useEffect } from 'react'
+import { Button, message, Steps, Form, Input, Select } from 'antd'
 import Draft from './componments/Draft'
+import { getCategories, submitNewaction } from '../server/request'
 function AddNews() {
   const [form] = Form.useForm()
   const firstContent = () => (
@@ -39,12 +40,21 @@ function AddNews() {
               message: '请选择新闻分类!',
             },
           ]}>
-          <Input.Password />
+          <Select
+            allowClear
+            options={categoriesList.map((item) => {
+              return {
+                value: item.id,
+                label: item.value,
+              }
+            })}
+          />
         </Form.Item>
       </Form>
     </>
   )
   const [editContent, seteditContent] = useState('')
+  const [categoriesList, setcategoriesList] = useState([])
   const getEditContent = (content) => {
     seteditContent(content)
     console.log(editContent)
@@ -80,6 +90,7 @@ function AddNews() {
         return
       }
       setCurrent(current + 1)
+      console.log('新闻内容', editContent)
     }
   }
   const prev = () => {
@@ -90,6 +101,30 @@ function AddNews() {
     title: item.title,
     description: item.description,
   }))
+  useEffect(() => {
+    getCategories().then((res) => {
+      console.log(res.data)
+      setcategoriesList(res.data)
+    })
+  }, [])
+  const submitNew = (audiState) => {
+    submitNewaction({
+      title: form.getFieldValue('title'),
+      categoryId: form.getFieldValue('categoryId'),
+      content: editContent,
+      region: '全球',
+      author: 'admin',
+      roleId: 1,
+      auditState: audiState,
+      publishState: 0,
+      createTime: 1615777743864,
+      star: 0,
+      view: 0,
+      publishTime: 1615778496314,
+    }).then((res) => {
+      console.log(res)
+    })
+  }
   return (
     <>
       <Steps current={current} items={items} />
@@ -99,14 +134,10 @@ function AddNews() {
       <div className="steps-action">
         {current === steps.length - 1 && (
           <div>
-            <Button
-              type="primary"
-              onClick={() => message.success('Processing complete!')}>
+            <Button type="primary" onClick={() => submitNew(0)}>
               保存草稿
             </Button>
-            <Button
-              type="primary"
-              onClick={() => message.success('Processing complete!')}>
+            <Button type="primary" onClick={() => submitNew(1)}>
               提交审核
             </Button>
           </div>

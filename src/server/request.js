@@ -9,3 +9,15 @@ export function getRoleList () {
     url: '/roles'
   })
 }
+export function getCategories () {
+  return Service({
+    url: '/categories'
+  })
+}
+export function submitNewaction (data) {
+  return Service({
+    method: 'post',
+    url: '/news',
+    data
+  })
+}

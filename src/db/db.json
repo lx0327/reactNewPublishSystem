@@ -123,7 +123,7 @@
         "/news-manage",
         "/audit-manage",
         "/publish-manage",
-        "/home"
+        "/"
       ]
     },
     {
@@ -131,7 +131,7 @@
       "roleName": "区域管理员",
       "roleType": 2,
       "rights": [
-        "/home",
+        "/",
         "/user-manage/add",
         "/user-manage/delete",
         "/user-manage/update",
@@ -162,10 +162,9 @@
         "/audit-manage/list",
         "/publish-manage/unpublished",
         "/publish-manage/published",
-        "/home",
+        "/",
         "/publish-manage/sunset",
-        "/publish-manage",
-        "/right-manage/role/list"
+        "/publish-manage"
       ]
     }
   ],
@@ -335,7 +334,7 @@
     {
       "id": 1,
       "title": "首页",
-      "key": "/home",
+      "key": "/",
       "pagepermisson": 1,
       "grade": 1
     },
@@ -748,6 +747,39 @@
       "star": 0,
       "view": 0,
       "id": 23
+    },
+    {
+      "title": "test标题",
+      "categoryId": 1,
+      "content": "<p>lx5565656</p>\n",
+      "region": "全球",
+      "author": "admin",
+      "roleId": 1,
+      "auditState": 1,
+      "publishState": 0,
+      "createTime": 1615777743864,
+      "star": 0,
+      "view": 0,
+      "publishTime": 1615778496314,
+      "id": 24
+    },
+    {
+      "id": 25
+    },
+    {
+      "title": "我是谁",
+      "categoryId": 2,
+      "content": "<p>我是谁我在那</p>\n",
+      "region": "全球",
+      "author": "admin",
+      "roleId": 1,
+      "auditState": 1,
+      "publishState": 0,
+      "createTime": 1615777743864,
+      "star": 0,
+      "view": 0,
+      "publishTime": 1615778496314,
+      "id": 26
     }
   ]
 }

@@ -1,19 +1,19 @@
-import Home from '../pages/Home'
-import UserRole from '../pages/UserRole'
-import Permission from '../pages/Permission'
-import UserList from '../pages/UserList'
-import Login from '../pages/Login'
-import Layoutpage from '../pages/Layoutpage'
-import PageNotFind from '../pages/PageNotFind'
-import { Navigate } from 'react-router-dom'
-import AddNews from '../pages/AddNews'
+import Home from '../pages/Home';
+import UserRole from '../pages/UserRole';
+import Permission from '../pages/Permission';
+import UserList from '../pages/UserList';
+import Login from '../pages/Login';
+import Layoutpage from '../pages/Layoutpage';
+import PageNotFind from '../pages/PageNotFind';
+import { Navigate } from 'react-router-dom';
+import AddNews from '../pages/AddNews';
 function RequireAuth({ children }) {
-  const authed = localStorage.getItem('token')
+  const authed = localStorage.getItem('token');
   return authed === null ? (
     <Navigate to="/login" replace /> // 跳转到登录
   ) : (
     children
-  )
+  );
 }
 const routesList = [
   {
@@ -25,7 +25,7 @@ const routesList = [
     ),
     children: [
       {
-        path: '/home',
+        path: '/',
         index: true,
         element: <Home />,
       },
@@ -57,5 +57,5 @@ const routesList = [
     path: '/pageNo',
     element: <PageNotFind />,
   },
-]
-export default routesList
+];
+export default routesList;

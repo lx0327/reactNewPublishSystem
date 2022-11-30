@@ -5,7 +5,10 @@ function App () {
 
   const element = useRoutes(routesList)
   return (
-    element
+    <>
+      {element}
+    </>
+
   )
 }
 export default App

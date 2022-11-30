@@ -1,27 +1,27 @@
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
-import { Outlet, useNavigate } from 'react-router-dom'
-import { Layout, Menu, Avatar, Popover } from 'antd'
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { Outlet, useNavigate } from 'react-router-dom';
+import { Layout, Menu, Avatar, Popover } from 'antd';
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
   UserOutlined,
-} from '@ant-design/icons'
-const { Header, Sider, Content } = Layout
+} from '@ant-design/icons';
+const { Header, Sider, Content } = Layout;
 function Layoutpage() {
-  const [menuList, setMenuList] = useState([])
-  const [collapsed, setCollapsed] = useState(false)
-  const navigate = useNavigate()
+  const [menuList, setMenuList] = useState([]);
+  const [collapsed, setCollapsed] = useState(false);
+  const navigate = useNavigate();
   useEffect(() => {
     async function getMenuList() {
       await axios
         .get('http://localhost:9000/rights?_embed=children')
         .then((res) => {
-          setMenuList(res.data)
-        })
+          setMenuList(res.data);
+        });
     }
-    getMenuList()
-  }, [])
+    getMenuList();
+  }, []);
   const items = menuList.map((item) => {
     if (item.pagepermisson === 1) {
       if (item.children?.length > 0) {
@@ -33,21 +33,21 @@ function Layoutpage() {
               return {
                 key: item.key,
                 label: item.title,
-              }
+              };
             } else {
-              return 0
+              return 0;
             }
           }),
-        }
+        };
       } else {
         return {
           key: item.key,
           label: item.title,
-        }
+        };
       }
     }
-    return 0
-  })
+    return 0;
+  });
 
   return (
     <Layout>
@@ -57,9 +57,9 @@ function Layoutpage() {
           theme="dark"
           mode="inline"
           items={items}
-          defaultSelectedKeys={'/home'}
+          defaultSelectedKeys={'/'}
           onClick={(items) => {
-            navigate(items.key)
+            navigate(items.key);
           }}
         />
       </Sider>
@@ -79,8 +79,8 @@ function Layoutpage() {
                 <p>超级管理员</p>
                 <p
                   onClick={() => {
-                    navigate('/login')
-                    localStorage.removeItem('token')
+                    navigate('/login');
+                    localStorage.removeItem('token');
                   }}
                   style={{ color: 'red' }}>
                   退出
@@ -105,6 +105,6 @@ function Layoutpage() {
         </Content>
       </Layout>
     </Layout>
-  )
+  );
 }
-export default Layoutpage
+export default Layoutpage;
