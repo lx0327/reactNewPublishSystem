@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react'
-import { Button, message, Steps, Form, Input, Select } from 'antd'
-import Draft from './componments/Draft'
-import { getCategories, submitNewaction } from '../server/request'
+import React, { useState, useEffect } from 'react';
+import { Button, message, Steps, Form, Input, Select } from 'antd';
+import Draft from '../componments/Draft';
+import { getCategories, submitNewaction } from '../server/request';
 function AddNews() {
-  const [form] = Form.useForm()
+  const [form] = Form.useForm();
   const firstContent = () => (
     <>
       <Form
@@ -46,19 +46,19 @@ function AddNews() {
               return {
                 value: item.id,
                 label: item.value,
-              }
+              };
             })}
           />
         </Form.Item>
       </Form>
     </>
-  )
-  const [editContent, seteditContent] = useState('')
-  const [categoriesList, setcategoriesList] = useState([])
+  );
+  const [editContent, seteditContent] = useState('');
+  const [categoriesList, setcategoriesList] = useState([]);
   const getEditContent = (content) => {
-    seteditContent(content)
-    console.log(editContent)
-  }
+    seteditContent(content);
+    console.log(editContent);
+  };
   const steps = [
     {
       title: '撰写新闻',
@@ -75,38 +75,38 @@ function AddNews() {
       description: '保存草稿或提交审核',
       content: '3',
     },
-  ]
+  ];
 
-  const [current, setCurrent] = useState(0)
+  const [current, setCurrent] = useState(0);
   const next = () => {
     if (current === 0) {
       form.validateFields().then((res) => {
-        console.log(res)
-        setCurrent(current + 1)
-      })
+        console.log(res);
+        setCurrent(current + 1);
+      });
     } else if (current === 1) {
       if (editContent === '' || editContent.trim() === '<p></p>') {
-        message.error('新闻内容不能为空！')
-        return
+        message.error('新闻内容不能为空！');
+        return;
       }
-      setCurrent(current + 1)
-      console.log('新闻内容', editContent)
+      setCurrent(current + 1);
+      console.log('新闻内容', editContent);
     }
-  }
+  };
   const prev = () => {
-    setCurrent(current - 1)
-  }
+    setCurrent(current - 1);
+  };
   const items = steps.map((item) => ({
     key: item.title,
     title: item.title,
     description: item.description,
-  }))
+  }));
   useEffect(() => {
     getCategories().then((res) => {
-      console.log(res.data)
-      setcategoriesList(res.data)
-    })
-  }, [])
+      console.log(res.data);
+      setcategoriesList(res.data);
+    });
+  }, []);
   const submitNew = (audiState) => {
     submitNewaction({
       title: form.getFieldValue('title'),
@@ -122,9 +122,9 @@ function AddNews() {
       view: 0,
       publishTime: 1615778496314,
     }).then((res) => {
-      console.log(res)
-    })
-  }
+      console.log(res);
+    });
+  };
   return (
     <>
       <Steps current={current} items={items} />
@@ -150,7 +150,7 @@ function AddNews() {
         )}
       </div>
     </>
-  )
+  );
 }
 
-export default AddNews
+export default AddNews;

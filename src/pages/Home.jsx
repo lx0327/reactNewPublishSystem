@@ -1,12 +1,13 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { increament, decrement } from '../store/module/conterSlice';
 function Home() {
-  const value = useSelector((store) => store.counter);
+  const {count,user} = useSelector((store) => store.counter);
   const dispatch = useDispatch();
   return (
     <div className="Home">
       这是Home页
-      <p>{value.count}</p>
+      {user.username}
+      <p>{count}</p>
       <button
         onClick={() => {
           dispatch(increament());
@@ -15,6 +16,7 @@ function Home() {
       </button>
       <button
         onClick={() => {
+          console.log(user)
           dispatch(decrement());
         }}>
         -

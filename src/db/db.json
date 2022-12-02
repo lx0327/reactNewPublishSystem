@@ -75,8 +75,8 @@
     {
       "username": "lx",
       "password": "1",
-      "region": "",
-      "roleId": 1,
+      "region": "亚洲",
+      "roleId": 2,
       "default": false,
       "roleState": true,
       "id": 9

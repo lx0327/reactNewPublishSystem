@@ -1,27 +1,27 @@
-import { Button, Form, Input, message } from 'antd'
-import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
+import { Button, Form, Input, message } from 'antd';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 function Login() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const onFinish = (values) => {
-    console.log('Success:', values)
+    console.log('Success:', values);
     axios
       .get(
         `http://localhost:9000/users?username=${values.username}&password=${values.password}&roleState=true&_expand=role`
       )
       .then((res) => {
         if (res.data.length > 0) {
-          localStorage.setItem('token', JSON.stringify(res.data[0]))
-          navigate('/home')
+          localStorage.setItem('token', JSON.stringify(res.data[0]));
+          navigate('/');
         } else {
-          message.error('用户名或密码错误')
+          message.error('用户名或密码错误');
         }
-        console.log(res)
-      })
-  }
+        console.log(res);
+      });
+  };
   const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo)
-  }
+    console.log('Failed:', errorInfo);
+  };
   return (
     <div className="Login">
       <div className="loginForm">
@@ -74,6 +74,6 @@ function Login() {
         </Form>
       </div>
     </div>
-  )
+  );
 }
-export default Login
+export default Login;
